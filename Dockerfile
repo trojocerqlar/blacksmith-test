@@ -10,6 +10,4 @@ ARG HEAVY_BUILD
 ENV HEAVY_BUILD=${HEAVY_BUILD}
 
 RUN echo "HEAVY_BUILD=$HEAVY_BUILD" && \
-    if [ "$HEAVY_BUILD" = "true" ]; then \
-        python -c "from main import heavy_calculation; print(f'Pre-calculating {heavy_calculation()} prime numbers...')";
-    fi
+    if [ "$HEAVY_BUILD" = "true" ]; then python -c "from main import heavy_calculation; print(f'Pre-calculating {heavy_calculation()} prime numbers...')"; fi
