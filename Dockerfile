@@ -11,8 +11,5 @@ ENV HEAVY_BUILD=${HEAVY_BUILD}
 
 RUN echo "HEAVY_BUILD=$HEAVY_BUILD" && \
     if [ "$HEAVY_BUILD" = "true" ]; then \
-        echo "Simulating heavy build..."; \
-        sleep 5; \
-    else \
-        echo "Skipping heavy build"; \
+        python -c "from main import heavy_calculation; print(f'Pre-calculating {heavy_calculation()} prime numbers...')";
     fi
