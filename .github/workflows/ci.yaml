@@ -38,4 +38,4 @@ jobs:
           push: true
           tags: ghcr.io/${{ github.repository }}:latest
         env:
-          HEAVY_BUILD: ${{ inputs.HEAVY_BUILD }}
+          HEAVY_BUILD: ${{ inputs.heavy_build }}
