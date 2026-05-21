@@ -1,18 +1,12 @@
 name: Blacksmith CI
 
 on:
-    workflow_dispatch:
-      inputs:
-        heavy_build:
-          description: "Run heavy build tasks"
-          type: boolean
-          required: false
-          default: false
+    push
 
 jobs:
   build_image:
     
-    runs-on: "ubuntu-latest"
+    runs-on: "internal-4vcpu-ubuntu-2404"
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -20,19 +14,5 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Build and push
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          platforms: linux/amd64,linux/arm64
-          push: true
-          tags: ghcr.io/${{ github.repository }}:latest
-          build-args: |
-            HEAVY_BUILD=${{ inputs.heavy_build }}
+      - name: test
+        run: echo hello
