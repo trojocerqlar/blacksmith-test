@@ -15,4 +15,4 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
       - name: test
-        run: echo hello
+        run: curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
