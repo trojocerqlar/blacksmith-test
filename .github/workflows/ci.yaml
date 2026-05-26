@@ -1,15 +1,22 @@
 name: Blacksmith CI
 
 on:
-    push
+  push
 
 jobs:
   build_image:
-    
-    runs-on: "internal-4vcpu-ubuntu-2204"
+    strategy:
+      matrix:
+        runner:
+          - ubuntu-latest
+          - internal-4vcpu-ubuntu-2204
+          - internal-2vcpu-ubuntu-2204
+
+    runs-on: ${{ matrix.runner }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: test
-        run: echo test
+        run: echo test2
